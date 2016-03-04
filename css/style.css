@@ -3,8 +3,8 @@
 }
 body{
 	margin: 0;
-	background: url("../images/bar.jpg") no-repeat center;
- background-size: cover;
+	background: url("../images/Bar.jpg") no-repeat center;
+ 	background-size: cover;
 	background-color: #49412c;
 	overflow: hidden;
 }
