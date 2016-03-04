@@ -110,8 +110,7 @@ label, input, button{
 	display: inline-block;
 	height: 94vh;
 	width: 100vw;
-	opacity: 0;
-	background-color: lightblue;
+	opacity: 1;
 	-webkit-transition: all ease 1000ms;
    	transition: all ease 1000ms;
 }

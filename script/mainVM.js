@@ -34,7 +34,7 @@ function MainVM() {
 				self.sClassN("disappear");
 				self.mClassN("disappear");
 				self.lClassN("appear");
-				self.sbClassN("");
+				self.sbClassN("delayed");
 				break;
 		}
 	};
