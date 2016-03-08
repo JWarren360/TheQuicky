@@ -28,9 +28,11 @@
 						<p>Looking to get a drink but dont want to fight the crowd?<br>
 						 Enter your zip to find a highly rated, uncrowded bar near you.<br>
 						 Cheers!</p>
+						 <form data-bind="submit: john">
 						 	<label>City,State or Zipcode</label>
-						 	<input type="text">
-						 	<button>Submit</button>
+						 	<input data-bind="value: place">
+						 	<button type="submit">Submit</button>
+						 </form>
 					</div>
 				</div>
 			</div>

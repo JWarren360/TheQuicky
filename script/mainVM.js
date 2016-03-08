@@ -1,11 +1,12 @@
 //Main View Class
-//Changes beteen four different views.
+//Changes between four different views.
 //-home
 //-list
 //-map
 //-search
 function MainVM() {
 	var self = this;
+	self.place = ko.observable("");
 	//main view shifter classes
 	self.mainClassN = ko.observable("center");
 	self.sClassN = ko.observable("disappear");
@@ -54,6 +55,10 @@ function MainVM() {
 	self.homeView = function (){
 		self.viewWindow(2);
 		console.log("home");
+	};
+	self.john = function (){
+		self.viewWindow(2);
+		geocodeAddress(geocoder, map, self.place())
 	};
 }
 ko.applyBindings(new MainVM());
