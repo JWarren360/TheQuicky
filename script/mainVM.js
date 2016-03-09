@@ -56,9 +56,30 @@ function MainVM() {
 		self.viewWindow(2);
 		console.log("home");
 	};
-	self.john = function (){
+	self.startSearch = function (){
 		self.viewWindow(2);
-		geocodeAddress(geocoder, map, self.place())
+		geocodeAddress(geocoder, map, self.place());
+		yelp(self.place());
+		//Wait for Yelp Response
+		var timer = setInterval(function(){ myTimer() }, 300);
+
+		function myTimer(){
+			if(success){
+				killTimer();
+				markerSet(barList);
+			}
+		}
+		function killTimer(){
+			clearInterval(timer);
+		}
 	};
+	//yelp();
 }
 ko.applyBindings(new MainVM());
+
+//var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
+//var yelpAPI = "API v2.0
+//Consumer Key	zhBg4yvDD4ywJ0vUrs0njg
+//Consumer Secret	s4lThWgYqnYdxNOAQ4AOkMMZtWs
+//Token	oeyauR_dukH2v7ZSf5R8EZ33W6oPcEB4
+//Token Secret	NjigkVXkpsOt-p4x0_Pdzqlydr0";

@@ -28,7 +28,7 @@
 						<p>Looking to get a drink but dont want to fight the crowd?<br>
 						 Enter your zip to find a highly rated, uncrowded bar near you.<br>
 						 Cheers!</p>
-						 <form data-bind="submit: john">
+						 <form data-bind="submit: startSearch">
 						 	<label>City,State or Zipcode</label>
 						 	<input data-bind="value: place">
 						 	<button type="submit">Submit</button>
@@ -46,13 +46,18 @@
 				</div>
 			</div>
 		</div>
-		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
 		<script src="./knockout/knockout.js"></script>
 		<script async type="text/javascript" src="./script/mainVM.js"></script>
 		<script async type="text/javascript" src="./script/listVM.js"></script>
 		<script async type="text/javascript" src="./script/mapVM.js"></script>
 		<script async type="text/javascript" src="./script/searchVM.js"></script>
 		<script async type="text/javascript" src="./script/gMaps.js"></script>
+		<script type="text/javascript" src="./script/yelp.js"></script>
+
 
 	</body>
 </html>
