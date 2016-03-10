@@ -62,7 +62,6 @@ function MainVM() {
 		yelp(self.place());
 		//Wait for Yelp Response
 		var timer = setInterval(function(){ myTimer() }, 300);
-
 		function myTimer(){
 			if(success){
 				killTimer();
@@ -73,7 +72,6 @@ function MainVM() {
 			clearInterval(timer);
 		}
 	};
-	//yelp();
 }
 ko.applyBindings(new MainVM());
 

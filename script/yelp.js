@@ -1,11 +1,13 @@
+//array of parsed bar info
 var barList = [];
+//Flag to continue stop myTimer()
 var success = false;
+//yelp OAuth and ajax call
 function yelp(near){
              success = false;
+             //Auth Keys
+             //TODO find out how to hide these
             var auth = {
-                //
-                // Update with your auth tokens.
-                //
                 consumerKey : "zhBg4yvDD4ywJ0vUrs0njg",
                 consumerSecret : "s4lThWgYqnYdxNOAQ4AOkMMZtWs",
                 accessToken : "oeyauR_dukH2v7ZSf5R8EZ33W6oPcEB4",
@@ -17,16 +19,13 @@ function yelp(near){
                 }
             };
 
-            var terms = 'food';
-            //var near = 'Austin';
-
             var accessor = {
                 consumerSecret : auth.consumerSecret,
                 tokenSecret : auth.accessTokenSecret
             };
             parameters = [];
             parameters.push(['location', near]);
-            parameters.push(['sort', '2']);
+            parameters.push(['sort', '0']);
             parameters.push(['limit', '20']);
             parameters.push(['radius_filter', '17000']);
             parameters.push(['category_filter', 'bars']);
@@ -46,9 +45,12 @@ function yelp(near){
             OAuth.SignatureMethod.sign(message, accessor);
 
             var parameterMap = OAuth.getParameterMap(message.parameters);
-            console.log(parameterMap);
-
+            //console.log(parameterMap);
+            //Empty barList[] before ajax call
             barList = [];
+            //ajax request to yelp
+            //success parses "data" and pushes results to barList[]
+            //TODO: Add error-handling
             $.ajax({
                 'url' : message.action,
                 'data' : parameterMap,
@@ -57,7 +59,6 @@ function yelp(near){
                 'success' : function(data, textStats, XMLHttpRequest) {
                     success = true;
                     for(var i = 0; i < data.businesses.length; i++){
-                    //console.log(data.businesses[i].name);
                     barList.push({
                         name: data.businesses[i].name,
                         rating: data.businesses[i].rating,
@@ -65,8 +66,10 @@ function yelp(near){
                         longitude: data.businesses[i].location.coordinate.longitude
                     })
                     }
-                   //console.dir(data);
-                   console.dir(barList);
+                    console.log("Raw yelp return data...");
+                    console.dir(data);
+                    console.log("Parsed return data...");
+                    console.dir(barList);
                 }
             });
 }
