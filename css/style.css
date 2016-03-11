@@ -24,10 +24,10 @@ header h1{
 	padding-top: 1%;
 	height: 5vh;
 }
-img{
+/*img{
 	height: 94vh;
 	width: 100vw;
-}
+}*/
 span{
 	font-family: 'Dancing Script', cursive;
 }
@@ -132,9 +132,14 @@ label, input, button{
 .delayed{
 	background-color: rgba(255, 255, 255, 0.8);
 }
-#info{
-	margin: 0;
-	background-color: lightgrey;
+.info{
+	display: flex;
+	margin:0;
+}
+.infoPic{
+	margin-right: 1%;
+}
+.infoData{
 }
 
 

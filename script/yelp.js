@@ -63,7 +63,10 @@ function yelp(near){
                         name: data.businesses[i].name,
                         rating: data.businesses[i].rating,
                         latitude: data.businesses[i].location.coordinate.latitude,
-                        longitude: data.businesses[i].location.coordinate.longitude
+                        longitude: data.businesses[i].location.coordinate.longitude,
+                        star: data.businesses[i].rating_img_url,
+                        url: data.businesses[i].url,
+                        small_image: data.businesses[i].image_url
                     })
                     }
                     console.log("Raw yelp return data...");
