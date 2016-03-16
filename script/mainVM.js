@@ -1,3 +1,4 @@
+var MYAPP = MYAPP || {};
 //Main View Class
 //Changes between four different views.
 //-home
@@ -6,14 +7,18 @@
 //-search
 function MainVM() {
 	var self = this;
+	//Search Location default
 	self.place = ko.observable("");
-	//main view shifter classes
-	self.mainClassN = ko.observable("center");
-	self.sClassN = ko.observable("disappear");
-	self.mClassN = ko.observable("appear");
-	self.lClassN = ko.observable("disappear");
-	self.sbClassN = ko.observable("");
+	//Main view-shifter css classes
+	self.mainClassN = ko.observable("left");//default
+	self.sClassN = ko.observable("disappear");//default
+	self.mClassN = ko.observable("disappear");//default
+	self.lClassN = ko.observable("disappear");//default
+	self.sbClassN = ko.observable("");//default
 	//main shifter class changes
+	self.initialize = function(){
+
+	}
 	self.viewWindow = function (view){
 		switch(view){
 			case 1:
@@ -39,41 +44,28 @@ function MainVM() {
 				break;
 		}
 	};
-	//button function calls
-	self.searchView = function (){
-		self.viewWindow(1);
-		console.log("search");
-	};
-	self.mapView = function (){
-		self.viewWindow(2);
-		console.log("map");
-	};
-	self.listView = function (){
-		self.viewWindow(3);
-		console.log("list");
-	};
-	self.homeView = function (){
-		self.viewWindow(2);
-		console.log("home");
-	};
 	self.startSearch = function (){
 		self.viewWindow(2);
-		geocodeAddress(geocoder, map, self.place());
-		yelp(self.place());
+		MYAPP.mapVModel.geocodeAddress(self.place());
+		MYAPP.yelp.search(self.place());
 		//Wait for Yelp Response
 		var timer = setInterval(function(){ myTimer() }, 300);
 		function myTimer(){
-			if(success){
+			if(MYAPP.appModel.success){
 				killTimer();
-				markerSet(barList);
+				MYAPP.appModel.parse();
+				MYAPP.mapVModel.markerSet(MYAPP.appModel.barList);
 			}
 		}
 		function killTimer(){
 			clearInterval(timer);
 		}
 	};
+
 }
-ko.applyBindings(new MainVM());
+MYAPP.mainView = new MainVM();
+ko.applyBindings(MYAPP.mainView);
+document.addEventListener("load", MYAPP.mainView.viewWindow(1));
 
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0

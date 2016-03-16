@@ -13,11 +13,11 @@
 	</head>
 	<body>
 		<header>
-			<i class="material-icons" data-bind="click: homeView">home</i>
-			<i class="material-icons" data-bind="click: searchView">search</i>
-			<h1 data-bind="click: homeView">TheQuicky</h1>
-			<i class="material-icons" data-bind="click: mapView">place</i>
-			<i class="material-icons" data-bind="click: listView">list</i>
+			<i class="material-icons" data-bind="click: viewWindow(2)">home</i>
+			<i class="material-icons" data-bind="click: viewWindow(1)">search</i>
+			<h1 data-bind="click: viewWindow(2)">TheQuicky</h1>
+			<i class="material-icons" data-bind="click: viewWindow(2)">place</i>
+			<i class="material-icons" data-bind="click: viewWindow(3)">list</i>
 		</header>
 		<!--Three main views-->
 		<div class="main" data-bind='css: mainClassN()'>
@@ -51,11 +51,11 @@
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
 		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
 		<script src="./knockout/knockout.js"></script>
+		<script async type="text/javascript" src="./script/model.js"></script>
+		<script async type="text/javascript" src="./script/gMaps.js"></script>
 		<script async type="text/javascript" src="./script/mainVM.js"></script>
 		<script async type="text/javascript" src="./script/listVM.js"></script>
-		<script async type="text/javascript" src="./script/mapVM.js"></script>
-		<script async type="text/javascript" src="./script/searchVM.js"></script>
-		<script async type="text/javascript" src="./script/gMaps.js"></script>
+
 		<script type="text/javascript" src="./script/yelp.js"></script>
 
 
