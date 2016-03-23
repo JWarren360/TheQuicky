@@ -15,6 +15,7 @@ function MainVM() {
 	self.mClassN = ko.observable("disappear");//default
 	self.lClassN = ko.observable("disappear");//default
 	self.sbClassN = ko.observable("");//default
+	self.list = ko.observableArray();
 	//main shifter class changes
 	self.initialize = function(){
 
@@ -55,6 +56,7 @@ function MainVM() {
 				killTimer();
 				MYAPP.appModel.parse();
 				MYAPP.mapVModel.markerSet(MYAPP.appModel.barList);
+				//MYAPP.appModel.sort();
 			}
 		}
 		function killTimer(){

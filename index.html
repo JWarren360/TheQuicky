@@ -25,23 +25,25 @@
 				<div class="searchBar" data-bind='css: sbClassN()'>
 					<div class="searchBarText">
 						<h2>Welcome to <span>TheQuicky!</span></h2>
-						<p>Looking to get a drink but dont want to fight the crowd?<br>
-						 Enter your zip to find a highly rated, uncrowded bar near you.<br>
-						 Cheers!</p>
-						 <form data-bind="submit: startSearch">
+						<form data-bind="submit: startSearch">
 						 	<label>City,State or Zipcode</label>
 						 	<input data-bind="value: place">
 						 	<button type="submit">Submit</button>
 						 </form>
+						<p>Looking to get a drink but dont want to fight the crowd?<br>
+						 Enter your zip to find a highly rated, uncrowded bar near you.<br>
+						 Cheers!</p>
 					</div>
 				</div>
 			</div>
 			<div class="map" data-bind='css: mClassN()'><div id="googleMap" ></div></div>
 			<div class="list" data-bind='css: lClassN()'>
-				<div class="searchBar" data-bind='css: sbClassN()'>
-					<div class="searchBarText">
-						<h2>This is the List view page!</h2>
-						<p>More to come!</p>
+				<div data-bind="foreach: list">
+					<div class="searchBar" data-bind='css: $parent.sbClassN()'>
+						<div class="searchBarText">
+							<img class="searchIMG" data-bind="attr:{src: large_image}">
+							<h3 data-bind="text: name"></h3>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -51,6 +53,7 @@
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
 		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
 		<script src="./knockout/knockout.js"></script>
+		<script async type="text/javascript" src="./script/fsquare.js"></script>
 		<script async type="text/javascript" src="./script/model.js"></script>
 		<script async type="text/javascript" src="./script/gMaps.js"></script>
 		<script async type="text/javascript" src="./script/mainVM.js"></script>

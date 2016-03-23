@@ -2,8 +2,10 @@ var MYAPP = MYAPP || {};
 //yelp OAuth and ajax call
 function Yelp() {
     var self = this;
+
     self.search = function(near) {
         MYAPP.appModel.success = false;
+        MYAPP.appModel.yelpData = {};
         //Auth Keys
         //TODO: find out how to hide these
         var auth = {

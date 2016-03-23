@@ -5,23 +5,6 @@ function GMaps() {
     function initialize() {
         MYAPP.appModel.map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
         MYAPP.appModel.geocoder = new google.maps.Geocoder();
-        /*if(localStorage){
-            if(localStorage.list !== undefined){
-                console.log("loaded");
-                MYAPP.mainView.viewWindow(2);
-                google.maps.event.addListenerOnce(MYAPP.appModel.map, 'idle', function(){
-                    self.recenter();
-                    self.markerSet(localStorage.list);
-                });
-
-            }else{
-                console.log("loaded2");
-                self.viewWindow(1);
-            }
-        }else{
-            console.log("No LocalStorage. Session will not be saved");
-            self.viewWindow(1);
-        }*/
     }
     //Call intialize() for map
     google.maps.event.addDomListener(window, 'load', initialize);

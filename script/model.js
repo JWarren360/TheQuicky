@@ -115,6 +115,7 @@
      self.barList = [];
      //parse collected data into barlist
      self.parse = function() {
+        self.barList = [];
          var length = self.yelpData.businesses.length;
          for (var i = 0; i < length; i++) {
              self.barList.push({
@@ -124,15 +125,53 @@
                  longitude: self.yelpData.businesses[i].location.coordinate.longitude,
                  star: self.yelpData.businesses[i].rating_img_url,
                  url: self.yelpData.businesses[i].url,
-                 small_image: self.yelpData.businesses[i].image_url
+                 small_image: self.yelpData.businesses[i].image_url,
+                 large_image: self.yelpData.businesses[i].image_url.replace("ms.jpg", "l.jpg")
+
              })
-         };
-         if(localStorage){
-         	localStorage.list = self.barList;
+             MYAPP.fSquare.search(self.yelpData.businesses[i].location.coordinate.latitude, self.yelpData.businesses[i].location.coordinate.longitude, self.yelpData.businesses[i].name, i);
+             console.log(self.yelpData.businesses[i].image_url.replace("ms.jpg", "l.jpg"));
          }
          console.log("Parsed return data...");
          console.dir(self.barList);
+         self.sort();
      }
+     self.sort = function() {
+
+        var timer = setInterval(function(){ myTimer() }, 300);
+        function myTimer(){
+            //console.log(self.fsSuccess);
+            if(self.fsSuccess){
+                killTimer();
+                startSort();
+            }
+        }
+        function killTimer(){
+            clearInterval(timer);
+        }
+        function startSort(){
+            var flag = false;
+            var container = {};
+            var length = self.barList.length - 1;
+            for (var i = 0; i < length; i++) {
+                if(self.barList[i].hereNow > self.barList[i + 1].hereNow){
+                    container = self.barList[i + 1];
+                    self.barList[i + 1] = self.barList[i];
+                    self.barList[i] = container;
+                    flag = true;
+                }
+            }
+            if(flag){
+                startSort();
+            }
+        }
+        MYAPP.mainView.list.removeAll();
+        var length = self.barList.length - 1;
+        for (var i = 0; i < length; i++) {
+            MYAPP.mainView.list.push(self.barList[i]);
+        }
+
+    }
 
  }
 
