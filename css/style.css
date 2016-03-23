@@ -4,8 +4,11 @@
 body{
 	margin: 0;
 	width: 100%;
-	background: url("../images/Bar.jpg") no-repeat center;
- 	background-size: cover;
+	background: url("../images/Bar.jpg") no-repeat center center fixed;
+ 	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 	background-color: #49412c;
 	overflow: hidden;
 }
