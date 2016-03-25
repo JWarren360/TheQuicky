@@ -63,6 +63,10 @@ function MainVM() {
 			clearInterval(timer);
 		}
 	};
+	self.mapReset = function(){
+        google.maps.event.trigger(map, "resize");
+        console.log("test");
+    };
 
 }
 MYAPP.mainView = new MainVM();

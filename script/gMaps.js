@@ -3,27 +3,35 @@ function GMaps() {
     var self = this;
     //Initialize Map
     function initialize() {
-        MYAPP.appModel.map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
-        MYAPP.appModel.geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
+        geocoder = new google.maps.Geocoder();
     }
     //Call intialize() for map
     google.maps.event.addDomListener(window, 'load', initialize);
-
+    ////////////////////////////////////////////////////////////////////////////
+    /*$(window).resize(function() {
+        // (the 'map' here is the result of the created 'var map = ...' above)
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+      });*/
+    //////////////////////////////////////////////////////////////////////////
     // recenter map base on search results
     //code taken and modified slightly from google api documentation
     self.geocodeAddress = function(address) {
-            MYAPP.appModel.geocoder.geocode({
+            self.mapReset();
+            geocoder.geocode({
                 'address': address
             }, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {;
-                    MYAPP.appModel.map.setCenter(results[0].geometry.location);
+                if (status === google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
         }
     self.recenter = function(){
-        MYAPP.appModel.map.setCenter(localStorage.place);
+        map.setCenter(localStorage.place);
     }
         //Set markers on map after search and map recenter
     self.markerSet = function(object) {
@@ -41,7 +49,7 @@ function GMaps() {
                     lat: object.latitude,
                     lng: object.longitude
                 },
-                map: MYAPP.appModel.map,
+                map: map,
                 icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
                 animation: google.maps.Animation.DROP
             }));
@@ -59,11 +67,11 @@ function GMaps() {
                 });
                 //Add hover event listeners to markers
                 mark.addListener('mouseover', function(event) {
-                    infowindow.open(MYAPP.appModel.map, mark);
+                    infowindow.open(map, mark);
                     mark.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
                 });
                 mark.addListener('mouseout', function() {
-                    infowindow.close(MYAPP.appModel.map, mark);
+                    infowindow.close(map, mark);
                     mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
                 });
             }(MYAPP.appModel.marker[count], object));
@@ -78,6 +86,11 @@ function GMaps() {
         }
         MYAPP.appModel.marker = [];
     };
+    self.mapReset = function(){
+        google.maps.event.trigger(map, "resize");
+    };
+
+                
 
 
 

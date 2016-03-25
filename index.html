@@ -12,11 +12,11 @@
 		<link async rel="icon" type="image/png" href="./images/Beer.png">
 	</head>
 	<body>
-		<header>
+		<header>	
 			<i class="material-icons" data-bind="click: viewWindow(2)">home</i>
 			<i class="material-icons" data-bind="click: viewWindow(1)">search</i>
 			<h1 data-bind="click: viewWindow(2)">TheQuicky</h1>
-			<i class="material-icons" data-bind="click: viewWindow(2)">place</i>
+			<i class="material-icons" data-bind="click: function() {viewWindow(2); mapReset()}">place</i>
 			<i class="material-icons" data-bind="click: viewWindow(3)">list</i>
 		</header>
 		<!--Three main views-->
