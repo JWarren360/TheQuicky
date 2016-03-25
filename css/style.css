@@ -153,7 +153,9 @@ button{
 @media screen and (max-width: 514px) {
 	body{
 		background-image: none;
-
+	}
+	.main{
+    width:100vw;
 	}
     .material-icons{
 		margin: 1vh .5vw;
