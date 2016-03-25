@@ -175,6 +175,9 @@ button{
 	.disappear{
 		display: none;
 	}
+	#googleMap{
+		height:80vh;
+	}
 }
 
 
