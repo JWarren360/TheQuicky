@@ -176,7 +176,7 @@ button{
 		display: none;
 	}
 	#googleMap{
-		height:80vh;
+		width:90vh;
 	}
 }
 
