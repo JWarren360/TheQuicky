@@ -47,6 +47,10 @@ button{
 	transition: all 100ms linear;
 }
 @media screen and (max-width: 514px) {
+	body{
+		background-image: none;	
+
+	}
     .material-icons{
 		margin: 1vh .5vw;
 }
