@@ -77,7 +77,6 @@ MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
 document.addEventListener("load", MYAPP.mainView.viewWindow(1));
 document.addEventListener("load", MYAPP.mainView.hideSearchBar());
-document.addEventListener("scroll", MYAPP.mainView.hideSearchBar());
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
 //Consumer Key	zhBg4yvDD4ywJ0vUrs0njg

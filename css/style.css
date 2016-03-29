@@ -39,6 +39,7 @@ button{
 	border-radius: 10%;
 	color: #262216;
 }
+
 .material-icons{
 	font-size: 6vh;
 	color: #49412c;
@@ -61,7 +62,7 @@ button{
 	display: -webkit-flex;
     display: flex;
     flex-wrap: nowrap;
-    max-height: 95vh;
+    max-height: 101vh;
     width:300vw;
     position: relative;
    	opacity: 1;
