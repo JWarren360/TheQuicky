@@ -68,7 +68,7 @@ function MainVM() {
     };
     self.hideSearchBar = function(){
     	setTimeout(function(){
-    		window.scrollBy(0,1);
+    		window.scrollTo(0,1);
     	}, 500);
     }
 
