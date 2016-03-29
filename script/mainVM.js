@@ -56,7 +56,6 @@ function MainVM() {
 				killTimer();
 				MYAPP.appModel.parse();
 				MYAPP.mapVModel.markerSet(MYAPP.appModel.barList);
-				//MYAPP.appModel.sort();
 			}
 		}
 		function killTimer(){

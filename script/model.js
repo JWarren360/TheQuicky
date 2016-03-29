@@ -126,11 +126,12 @@
                  star: self.yelpData.businesses[i].rating_img_url,
                  url: self.yelpData.businesses[i].url,
                  small_image: self.yelpData.businesses[i].image_url,
-                 large_image: self.yelpData.businesses[i].image_url.replace("ms.jpg", "l.jpg")
+                 large_image: self.yelpData.businesses[i].image_url.replace("ms.jpg", "l.jpg"),
+                 snippet: self.yelpData.businesses[i].snippet_text,
+                 id: 'business' + i
 
              })
              MYAPP.fSquare.search(self.yelpData.businesses[i].location.coordinate.latitude, self.yelpData.businesses[i].location.coordinate.longitude, self.yelpData.businesses[i].name, i);
-             console.log(self.yelpData.businesses[i].image_url.replace("ms.jpg", "l.jpg"));
          }
          console.log("Parsed return data...");
          console.dir(self.barList);

@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>KnockoutJS • TheQuicky</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
 		<!--Google icons link-->
 		<link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link async href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
@@ -39,10 +40,13 @@
 			<div class="map" data-bind='css: mClassN()'><div id="googleMap" ></div></div>
 			<div class="list" data-bind='css: lClassN()'>
 				<div data-bind="foreach: list">
-					<div class="searchBar" data-bind='css: $parent.sbClassN()'>
-						<div class="searchBarText">
-							<img class="searchIMG" data-bind="attr:{src: large_image}">
-							<h3 data-bind="text: name"></h3>
+					<div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
+						<div class="listBarInfo">
+							<img data-bind="attr:{src: large_image}">
+							<div class="listInfoText">
+								<h3 data-bind="text: name"></h3>
+								<p data-bind="text: snippet"</p>
+							<div>	
 						</div>
 					</div>
 				</div>

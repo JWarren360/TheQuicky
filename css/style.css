@@ -123,6 +123,52 @@ button{
 	-webkit-transition: all ease 1000ms;
    	transition: all ease 1000ms;
 }
+.listBar{
+	position: relative;
+	right: 0;
+	top: 5vh;
+	height: 40vh;
+	width: 100%;
+	margin: 5vh 0;
+	background: rgba(255, 255, 255, 0);
+	-webkit-transition: all ease 2000ms;
+   	transition: all ease 2000ms;
+}
+.listBarInfo{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 37vh;
+	overflow: hidden;
+}
+.listBarInfo img{
+	display: inline-block;
+	width: 39vw;
+	height: 100%;
+	padding: 0 1%;
+}
+.listInfoText{
+	vertical-align:top;
+	display: inline-block;
+	padding: 0 1%;
+	text-align: center;
+	width: 51vw;
+	height: 100%;
+	color: #262216;
+	opacity: 1;
+
+}
+.listInfoText h3{
+	display: block;
+	font-size: 5vh;
+	margin: 0;
+}
+.listInfoText p{
+	display: block;
+	font-size: 3vh;
+	margin: 0;
+}
 .left{
 	right: 0;
 }
@@ -151,9 +197,6 @@ button{
 .infoData{
 }
 @media screen and (max-width: 514px) {
-	body{
-		background-image: none;
-	}
 	.main{
     width:100vw;
 	}
@@ -174,9 +217,6 @@ button{
 	}
 	.disappear{
 		display: none;
-	}
-	#googleMap{
-		width:90vw;
 	}
 }
 

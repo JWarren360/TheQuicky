@@ -8,15 +8,7 @@ function GMaps() {
     }
     //Call intialize() for map
     google.maps.event.addDomListener(window, 'load', initialize);
-    ////////////////////////////////////////////////////////////////////////////
-    /*$(window).resize(function() {
-        // (the 'map' here is the result of the created 'var map = ...' above)
-        var center = map.getCenter();
-        google.maps.event.trigger(map, "resize");
-        map.setCenter(center);
-      });*/
-    //////////////////////////////////////////////////////////////////////////
-    // recenter map base on search results
+    // recenter map based on search results
     //code taken and modified slightly from google api documentation
     self.geocodeAddress = function(address) {
             self.mapReset();
