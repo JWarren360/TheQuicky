@@ -146,6 +146,7 @@ button{
 .listBarInfo img{
 	display: inline-block;
 	width: 39vw;
+	max-width: 200px;
 	height: 100%;
 	padding: 0 1%;
 }

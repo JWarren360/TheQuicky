@@ -5,6 +5,7 @@ function GMaps() {
     function initialize() {
         map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
         geocoder = new google.maps.Geocoder();
+        infowindow = new google.maps.InfoWindow();
     }
     //Call intialize() for map
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -22,7 +23,7 @@ function GMaps() {
                 }
             });
         }
-    self.recenter = function(){
+    self.recenter = function(){ 
         map.setCenter(localStorage.place);
     }
         //Set markers on map after search and map recenter
@@ -46,7 +47,7 @@ function GMaps() {
                 animation: google.maps.Animation.DROP
             }));
             //InfoMarker Closure Function
-            var infoMarker = (function(mark, obj) {
+            var infoMarker = (function(mark, obj, number) {
                 //Markup for infoWindow
                 var contentString = '<div class="info">' +
                     '<div class="infoPic"><img src="' + obj.small_image + '"></div>' +
@@ -54,19 +55,35 @@ function GMaps() {
                     '<h1>' + obj.name + '</h1>' +
                     '<a href="' + obj.url + '"><img src="' + obj.star + '"></a>' +
                     '</div></div>';
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
+                //var infowindow = new google.maps.InfoWindow({
+                //    content: contentString
+                //});
+                var isWindowClosed = true;
                 //Add hover event listeners to markers
-                mark.addListener('mouseover', function(event) {
-                    infowindow.open(map, mark);
-                    mark.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
-                });
-                mark.addListener('mouseout', function() {
-                    infowindow.close(map, mark);
-                    mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
-                });
-            }(MYAPP.appModel.marker[count], object));
+                var mq = window.matchMedia('all and (max-width: 700px)');
+                if(mq.matches) {
+                    mark.addListener('click', function(event) {
+                        infowindow.close();
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, mark);
+                    });
+                } else {
+                    mark.addListener('mouseover', function(event) {
+                        infowindow.open(map, mark);
+                        infowindow.setContent(contentString);
+                        mark.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+                    });
+                    mark.addListener('mouseout', function(event) {
+                        infowindow.close(map, mark);
+                        infowindow.setContent(contentString);
+                        mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                    });
+                    mark.addListener('click', function(event) {
+                        MYAPP.mainView.gotoList(number);
+                    });
+                }
+                
+            }(MYAPP.appModel.marker[count], object, count));
         }, timeout);
 
     }

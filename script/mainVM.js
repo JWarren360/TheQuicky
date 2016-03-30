@@ -71,18 +71,19 @@ function MainVM() {
     	setTimeout(function(){
     		window.scrollTo(0,1);
     	}, 0);
+    };
+    self.gotoList = function(markerNumber){
+    	console.log("working " +  markerNumber);
+    	self.viewWindow(3);
+    	document.getElementById("business" + markerNumber).scrollIntoView();
+
     }
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
 document.addEventListener("load", MYAPP.mainView.viewWindow(1));
-//window.addEventListener("load",function() {
-	// Set a timeout...
-	//setTimeout(function(){
-		// Hide the address bar!
-	//	window.scrollTo(0, 44);
-	//}, 0);
+
 //});
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
