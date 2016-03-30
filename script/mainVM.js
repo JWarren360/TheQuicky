@@ -47,6 +47,7 @@ function MainVM() {
 	};
 	self.startSearch = function (){
 		self.viewWindow(2);
+		self.hideSearchBar();
 		MYAPP.mapVModel.geocodeAddress(self.place());
 		MYAPP.yelp.search(self.place());
 		//Wait for Yelp Response
@@ -66,23 +67,17 @@ function MainVM() {
         google.maps.event.trigger(map, "resize");
         console.log("test");
     };
-    self.hideSearchBar = function(){
-    	setTimeout(function(){
-    		window.scrollTo(0,44);
-    	}, 0);
+    self.hideSearchBar = function() {
+		setTimeout(function(){
+			window.scrollTo(0, 44);
+		}, 0);
     }
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
 document.addEventListener("load", MYAPP.mainView.viewWindow(1));
-window.addEventListener("load",function() {
-	// Set a timeout...
-	setTimeout(function(){
-		// Hide the address bar!
-		window.scrollTo(0, 44);
-	}, 0);
-});
+window.addEventListener("load", MYAPP.mainView.hideSearchBar());
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
 //Consumer Key	zhBg4yvDD4ywJ0vUrs0njg
