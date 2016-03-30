@@ -80,7 +80,7 @@ window.addEventListener("load",function() {
 	// Set a timeout...
 	setTimeout(function(){
 		// Hide the address bar!
-		window.scrollTo(0, 1);
+		window.scrollTo(0, 44);
 	}, 0);
 });
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
