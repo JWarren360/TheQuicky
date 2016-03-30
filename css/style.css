@@ -62,7 +62,7 @@ button{
 	display: -webkit-flex;
     display: flex;
     flex-wrap: nowrap;
-    max-height: 101vh;
+    max-height: 91vh;
     width:300vw;
     position: relative;
    	opacity: 1;
@@ -154,7 +154,7 @@ button{
 	display: inline-block;
 	padding: 0 1%;
 	text-align: center;
-	width: 51vw;
+	width: 50vw;
 	height: 100%;
 	color: #262216;
 	opacity: 1;
