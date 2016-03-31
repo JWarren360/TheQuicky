@@ -18,9 +18,15 @@ function MainVM() {
 	self.list = ko.observableArray();
 	//main shifter class changes
 	self.initialize = function(){
-
-	}
+		if(self.place() == "" && localStorage && localStorage.getItem('place') /*&& false*/){
+			self.startLocalSearch();
+		}else{
+			self.viewWindow(1);
+		}
+	};
 	self.viewWindow = function (view){
+		if(localStorage){localStorage.setItem("viewW", view);}
+		console.log(view);
 		switch(view){
 			case 1:
 				self.mainClassN("left");
@@ -44,11 +50,30 @@ function MainVM() {
 				self.sbClassN("delayed");
 				break;
 		}
+
+	};
+	self.startLocalSearch = function(){
+		self.viewWindow(Number(localStorage.getItem('viewW')));
+		self.hideSearchBar();
+		var localList = JSON.parse(localStorage.getItem("listResults"));
+		var timer = setTimeout(function(){ 
+			MYAPP.mapVModel.geocodeAddress(localStorage.getItem('place'));
+			MYAPP.mapVModel.markerSet(localList);
+			self.list.removeAll();
+        var length = localList.length - 1;
+        for (var i = 0; i < length; i++) {
+            self.list.push(localList[i]);
+        }
+		}, 300);
 	};
 	self.startSearch = function (){
+		if(localStorage){
+			localStorage.setItem('place', self.place());
+		}
 		self.viewWindow(2);
 		self.hideSearchBar();
 		MYAPP.mapVModel.geocodeAddress(self.place());
+		console.log(self.place());
 		MYAPP.yelp.search(self.place());
 		//Wait for Yelp Response
 		var timer = setInterval(function(){ myTimer() }, 300);
@@ -77,12 +102,12 @@ function MainVM() {
     	self.viewWindow(3);
     	document.getElementById("business" + markerNumber).scrollIntoView();
 
-    }
+    };
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
-document.addEventListener("load", MYAPP.mainView.viewWindow(1));
+document.addEventListener("load", MYAPP.mainView.initialize());
 
 //});
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";

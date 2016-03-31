@@ -136,6 +136,7 @@
          console.log("Parsed return data...");
          console.dir(self.barList);
          self.sort();
+         self.localStore();
      }
      self.sort = function() {
 
@@ -172,6 +173,11 @@
             MYAPP.mainView.list.push(self.barList[i]);
         }
 
+    }
+    self.localStore = function(){
+        if(localStorage){
+            localStorage.setItem( 'listResults', JSON.stringify(self.barList));
+        }
     }
 
  }
