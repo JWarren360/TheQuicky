@@ -1,4 +1,5 @@
 var MYAPP = MYAPP || {};
+
 function GMaps() {
     var self = this;
     //Initialize Map
@@ -58,7 +59,7 @@ function GMaps() {
                 var isWindowClosed = true;
                 //Add hover event listeners to markers
                 var mq = window.matchMedia('all and (max-width: 700px)');
-                if(mq.matches) {
+                if (mq.matches) {
                     mark.addListener('click', function(event) {
                         infowindow.close();
                         infowindow.setContent(contentString);
@@ -79,7 +80,7 @@ function GMaps() {
                         MYAPP.mainView.gotoList(number);
                     });
                 }
-                
+
             }(MYAPP.appModel.marker[count], object, count));
         }, timeout);
 
@@ -92,11 +93,10 @@ function GMaps() {
         }
         MYAPP.appModel.marker = [];
     };
-    self.mapReset = function(){
+    self.mapReset = function() {
         google.maps.event.trigger(map, "resize");
     };
 
-                
 
 
 
