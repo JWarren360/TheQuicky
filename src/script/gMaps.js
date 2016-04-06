@@ -23,7 +23,6 @@ function GMaps() {
                 }
             });
         }
-    
         //Set markers on map after search and map recenter
     self.markerSet = function(object) {
             self.clearMarkers();

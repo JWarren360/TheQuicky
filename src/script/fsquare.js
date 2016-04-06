@@ -14,7 +14,6 @@ function FSquare() {
     self.search = function(lat, lng, name, i) {
         var searchURL = "https://api.foursquare.com/v2/venues/search?ll=" +lat+ "," +lng+ "&query=" +name+ "&radius=1000&intent=browse&client_id=RORNPTKCPZDXKGS42144L213YIFL442BPTMN4QVORMQ4J4GJ&client_secret=0WEBW0LJYAZ4AJOAKBAKXNAIQPIGVUDYTKL2OEPBBT0THX4K&v=20160315"
 
-        //TODO: Add error-handling
         $.ajax({
             'url': searchURL,
             'success': function(data, textStats, XMLHttpRequest) {
@@ -24,6 +23,25 @@ function FSquare() {
                     MYAPP.appModel.barList[i].hereNow = 10000;
                 }
                 if(i == 19){MYAPP.appModel.fsSuccess = true;}
+            },
+            'error': function (jqXHR, exception) {
+                var msg = '';
+                if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                alert(msg);
             }
         });
 
