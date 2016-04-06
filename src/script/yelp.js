@@ -7,7 +7,6 @@ function Yelp() {
         MYAPP.appModel.success = false;
         MYAPP.appModel.yelpData = {};
         //Auth Keys
-        //TODO: find out how to hide these
         var auth = {
             consumerKey: "zhBg4yvDD4ywJ0vUrs0njg",
             consumerSecret: "s4lThWgYqnYdxNOAQ4AOkMMZtWs",
@@ -55,8 +54,6 @@ function Yelp() {
             'success': function(data, textStats, XMLHttpRequest) {
                 MYAPP.appModel.success = true;
                 MYAPP.appModel.yelpData = data;
-                console.log("Raw yelp return data...");
-                console.dir(data);
             },
             'error': function (jqXHR, exception) {
                 var msg = '';
