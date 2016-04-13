@@ -30,4 +30,4 @@ gulp.task('watch', function() {
   gulp.watch('src/images/**/*', ['images']);
  });
  // Default Task
-gulp.task('default', ['scripts', 'images']);
+gulp.task('default', ['scripts']);

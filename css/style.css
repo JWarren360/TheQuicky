@@ -143,6 +143,14 @@ button{
 	height: 12vh;
 	text-align: center;
 }
+.list .filterHead{
+    margin: 0 auto;
+    height: 10vh;
+}
+.list .filter{
+    text-align: center;
+    height: 5vh;
+}
 .list h3{
 	font-size: 5vh;
     margin-top: 0px;

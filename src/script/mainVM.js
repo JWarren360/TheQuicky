@@ -16,6 +16,18 @@ function MainVM() {
     self.lClassN = ko.observable("disappear"); //default
     self.sbClassN = ko.observable(""); //default
     self.list = ko.observableArray();
+    self.filter = ko.observable("");
+    this.filter.subscribe(function () {
+        /*if: name.toLowerCase().search($parent.filter().toLowerCase()) != -1*/
+        /*if(self.list()[0].name.toLowerCase().search(self.filter().toLowerCase()) != -1){
+            console.log("true");
+            MYAPP.appModel.marker[2].setVisible(true);
+        }else{
+            console.log("false");
+        }*/
+        self.list().forEach(function(element, index, array){MYAPP.appModel.marker[index].setVisible(self.list()[index].name.toLowerCase().search(self.filter().toLowerCase()) != -1);
+        });
+    });
     //main shifter class changes
     self.initialize = function() {
         if (self.place() == "" && localStorage && localStorage.getItem('place') /*&& false*/ ) {
@@ -106,12 +118,12 @@ function MainVM() {
 
     };
 
+
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
 document.addEventListener("load", MYAPP.mainView.initialize());
 
-//});
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
 //Consumer Key	zhBg4yvDD4ywJ0vUrs0njg

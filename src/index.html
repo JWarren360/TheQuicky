@@ -46,9 +46,17 @@
                 <div class="listBarInfo listHeader">
                     <h3>Listed From Least Busy to Most Busy</h3>
                 </div>
+                <div class="listBar filterHead" data-bind='css: sbClassN()'>
+                        <div class="listBarInfo filter">
+                            <form>
+                                <label>Filter</label>
+                                <input>
+                            </form>
+                        </div>
+                    </div>
             </div>
             <div data-bind="foreach: list">
-                <div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
+                <div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}, if: name'>
                     <div class="listBarInfo">
                         <img data-bind="attr:{src: large_image}">
                         <div class="listInfoText">

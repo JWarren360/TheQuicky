@@ -120,6 +120,7 @@
          for (var i = 0; i < length; i++) {
              self.barList.push({
                  name: self.yelpData.businesses[i].name,
+                 lowName: self.yelpData.businesses[i].name.toLowerCase(),
                  rating: self.yelpData.businesses[i].rating,
                  latitude: self.yelpData.businesses[i].location.coordinate.latitude,
                  longitude: self.yelpData.businesses[i].location.coordinate.longitude,
@@ -170,7 +171,7 @@
              }
          }
          MYAPP.mainView.list.removeAll();
-         var length = self.barList.length - 1;
+         var length = self.barList.length;
          for (var i = 0; i < length; i++) {
              MYAPP.mainView.list.push(self.barList[i]);
          }

@@ -44,14 +44,24 @@
 							<h3>Listed From Least Busy to Most Busy</h3>
 						</div>
 					</div>
+					<div class="listBar filterHead" data-bind='css: sbClassN()'>
+						<div class="listBarInfo filter">
+							<form>
+                                <label>Filter:</label>
+                                <input data-bind="textInput: filter">
+                            </form>
+						</div>
+					</div>
 				<div data-bind="foreach: list">
-					<div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
-						<div class="listBarInfo">
-							<img data-bind="attr:{src: large_image}">
-							<div class="listInfoText">
-								<h3 data-bind="text: $index"></h3><h3 data-bind="text: name"></h3>
-								<p data-bind="text: snippet"</p>
-							<div>	
+					<div data-bind="if: name.toLowerCase().search($parent.filter().toLowerCase()) != -1">
+						<div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
+							<div class="listBarInfo">
+								<img data-bind="attr:{src: large_image}">
+								<div class="listInfoText">
+									<h3 data-bind="text: $index"></h3><h3 data-bind="text: name"></h3>
+									<p data-bind="text: snippet"></p>
+								<div>	
+							</div>
 						</div>
 					</div>
 				</div>
