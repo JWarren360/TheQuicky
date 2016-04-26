@@ -1,6 +1,3 @@
-*4 {
-    border: 1px solid red !important;
-}
 body {
     margin: 0;
     max-width: 100vw;
@@ -12,6 +9,7 @@ body {
     background-color: #49412c;
     overflow: hidden;
 }
+
 header {
     background-color: #262216;
     height: 9vh;
@@ -21,6 +19,7 @@ header {
     -webkit-justify-content: center;
     justify-content: center;
 }
+
 header h1 {
     display: inline-block;
     color: #b0a18e;
@@ -29,18 +28,22 @@ header h1 {
     padding-top: 1vh;
     font-size: 6vh;
 }
+
 span {
     font-family: 'Dancing Script', cursive;
 }
+
 label,
 input,
 button {
     font-size: 4vh;
 }
+
 button {
     border-radius: 10%;
     color: #262216;
 }
+
 .material-icons {
     font-size: 6vh;
     color: #49412c;
@@ -48,11 +51,13 @@ button {
     padding-top: .5vh;
     transition: all 100ms linear;
 }
+
 .material-icons:hover {
     background: -webkit-radial-gradient(#97743a, #49412c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .material-icons:active {
     -ms-transform: scale(0.9, 0.9);
     /* IE 9 */
@@ -62,6 +67,7 @@ button {
     
     transform: scale(0.9, 0.9);
 }
+
 .main {
     display: -webkit-flex;
     display: flex;
@@ -73,6 +79,7 @@ button {
     -webkit-transition: all ease 1000ms;
     transition: all ease 800ms;
 }
+
 .searchView {
     display: inline-block;
     height: 94vh;
@@ -81,43 +88,51 @@ button {
     -webkit-transition: all ease 1000ms;
     transition: all ease 1000ms;
 }
+
 .searchBar {
     position: relative;
     right: 0;
     top: 5vh;
     height: 70vh;
     width: 100vw;
-    s margin: 5vh 0;
+    margin: 5vh 0;
     background: rgba(255, 255, 255, 0);
     -webkit-transition: all ease 2000ms;
     transition: all ease 2000ms;
 }
+
 .searchBarText {
     text-align: center;
     color: #262216;
     opacity: 1;
 }
+
 .searchBarText h2 {
     font-size: 8vh;
     margin-bottom: 2vh;
 }
+
 .searchBarText p {
     font-size: 4vh;
     margin-top: 2vh;
 }
+
 .searchBarText form {
     font-size: 5vh;
 }
+
 .map {
     opacity: 1;
     -webkit-transition: all ease 1000ms;
     transition: all ease 1000ms;
 }
+
 #googleMap {
     display: inline-block;
     height: 94vh;
     width: 100vw;
 }
+
 .list {
     display: inline-block;
     height: 94vh;
@@ -127,6 +142,7 @@ button {
     -webkit-transition: all ease 1000ms;
     transition: all ease 1000ms;
 }
+
 .listBar {
     position: relative;
     right: 0;
@@ -139,26 +155,32 @@ button {
     -webkit-transition: all ease 2000ms;
     transition: all ease 2000ms;
 }
+
 .list .head {
     height: 15vh;
 }
-.list .filterHead{
+
+.list .filterHead {
     margin: 0 auto;
     height: 10vh;
 }
-.list .filter{
+
+.list .filter {
     text-align: center;
     height: 5vh;
 }
+
 .list .listHeader {
     height: 12vh;
     text-align: center;
 }
+
 .list h3 {
     font-size: 5vh;
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
 .listBarInfo {
     position: absolute;
     top: 50%;
@@ -167,6 +189,7 @@ button {
     height: 37vh;
     overflow: hidden;
 }
+
 .listBarInfo img {
     display: inline-block;
     width: 39vw;
@@ -174,6 +197,7 @@ button {
     height: 100%;
     padding: 0 1%;
 }
+
 .listInfoText {
     vertical-align: top;
     display: inline-block;
@@ -185,65 +209,87 @@ button {
     color: #262216;
     opacity: 1;
 }
+
 .listInfoText h3 {
     display: block;
     font-size: 5vh;
     margin: 0;
 }
+
 .listInfoText p {
     display: block;
     font-size: 3vh;
     margin: 0;
 }
+
 .left {
     right: 0;
 }
+
 .center {
     right: 100%;
 }
+
 .right {
     right: 200%;
 }
+
 .appear {
     opacity: 1;
 }
+
 .disappear {
     opacity: 0;
 }
+
 .delayed {
     background-color: rgba(255, 255, 255, 0.8);
 }
+
 .info {
     display: flex;
     margin: 0;
 }
+
 .infoPic {
     margin-right: 1%;
 }
+
 .infoData {} @media screen and (max-width: 514px) {
+
     .main {
         width: 100vw;
     }
+
     .material-icons {
         margin: 1vh .5vw;
     }
+
     .left {
         right: 0;
     }
+
     .center {
         right: 0;
     }
+
     .right {
         right: 0;
     }
+
     .appear {
         display: inline-block;
     }
+
     .disappear {
         display: none;
     }
 }
-/*#262216
+
+/*
+Color Scheme
+#262216
 #49412c
 #97743a
-#b0a18e*/
+#b0a18e
+*/

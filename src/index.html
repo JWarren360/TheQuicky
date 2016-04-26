@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <!--Google icons link-->
-    <link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link async href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-    <link async href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet">
     <!--icon from iconfinder.com-->
-    <link async rel="icon" type="image/png" href="./images/Beer.png">
+    <link rel="icon" type="image/png" href="./images/Beer.png">
 </head>
 
 <body>
@@ -33,52 +33,54 @@
                         <input data-bind="value: place">
                         <button type="submit">Submit</button>
                     </form>
-                    <p>Looking to get a drink but dont want to fight the crowd?<br> Enter your zip to find a highly rated, uncrowded bar near you.<br> Cheers!
+                    <p>Looking to get a drink but dont want to fight the crowd?
+                        <br> Enter your zip to find a highly rated, uncrowded bar near you.
+                        <br> Cheers!
                     </p>
                 </div>
             </div>
         </div>
-        <div class="map" data-bind='css: mClassN()'>
-            <div id="googleMap"></div>
+    </div>
+    <div class="map" data-bind='css: mClassN()'>
+        <div id="googleMap"></div>
+    </div>
+    <div class="list" data-bind='css: lClassN()'>
+        <div class="listBar head" data-bind='css: sbClassN()'>
+            <div class="listBarInfo listHeader">
+                <h3>Listed From Least Busy to Most Busy</h3>
+            </div>
+            <div class="listBar filterHead" data-bind='css: sbClassN()'>
+                <div class="listBarInfo filter">
+                    <form>
+                        <label>Filter</label>
+                        <input>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="list" data-bind='css: lClassN()'>
-            <div class="listBar head" data-bind='css: sbClassN()'>
-                <div class="listBarInfo listHeader">
-                    <h3>Listed From Least Busy to Most Busy</h3>
-                </div>
-                <div class="listBar filterHead" data-bind='css: sbClassN()'>
-                        <div class="listBarInfo filter">
-                            <form>
-                                <label>Filter</label>
-                                <input>
-                            </form>
-                        </div>
-                    </div>
-            </div>
-            <div data-bind="foreach: list">
-                <div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}, if: name'>
-                    <div class="listBarInfo">
-                        <img data-bind="attr:{src: large_image}">
-                        <div class="listInfoText">
-                            <h3 data-bind="text: $index"></h3>
-                            <h3 data-bind="text: name"></h3>
-                            <p data-bind="text: snippet" </p>
-                                <div>
-                                </div>
-                        </div>
-                    </div>
+    </div>
+    <div data-bind="foreach: list">
+        <div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}, if: name'>
+            <div class="listBarInfo">
+                <img alt="Yelp public bar picture" src="./" data-bind="attr:{src: large_image}">
+                <div class="listInfoText">
+                    <h3 data-bind="text: $index">Yelp did not load</h3>
+                    <h3 data-bind="text: name">Yelp did not load</h3>
+                    <p data-bind="text: snippet">Yelp did not load</p>
                 </div>
             </div>
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-            <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
-            <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
-            <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
-            <script src="./knockout/knockout.js"></script>
-            <script async type="text/javascript" src="./script/fsquare.js"></script>
-            <script async type="text/javascript" src="./script/model.js"></script>
-            <script async type="text/javascript" src="./script/gMaps.js"></script>
-            <script async type="text/javascript" src="./script/mainVM.js"></script>
-            <script type="text/javascript" src="./script/yelp.js"></script>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+    <script src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
+    <script src="./script/knockout.js"></script>
+    <script src="./script/fsquare.js"></script>
+    <script src="./script/model.js"></script>
+    <script src="./script/gMaps.js"></script>
+    <script src="./script/mainVM.js"></script>
+    <script src="./script/yelp.js"></script>
 </body>
 
 </html>

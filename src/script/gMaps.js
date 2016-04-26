@@ -4,14 +4,18 @@ function GMaps() {
     var self = this;
     //Initialize Map
     function initialize() {
+        console.log("gmap init");
         map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
         geocoder = new google.maps.Geocoder();
         infowindow = new google.maps.InfoWindow();
     }
     //Call intialize() for map
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
     // recenter map based on search results
     //code taken and modified slightly from google api documentation
+    self.init = function(){
+        initialize();
+    };
     self.geocodeAddress = function(address) {
             self.mapReset();
             geocoder.geocode({
@@ -101,4 +105,5 @@ function GMaps() {
 
 
 }
+
 MYAPP.mapVModel = new GMaps();

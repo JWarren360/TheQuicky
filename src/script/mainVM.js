@@ -25,11 +25,14 @@ function MainVM() {
         }else{
             console.log("false");
         }*/
-        self.list().forEach(function(element, index, array){MYAPP.appModel.marker[index].setVisible(self.list()[index].name.toLowerCase().search(self.filter().toLowerCase()) != -1);
+        self.list().forEach(function(element, index, array){
+            MYAPP.appModel.marker[index].setVisible(
+                self.list()[index].name.toLowerCase().search(self.filter().toLowerCase()) != -1);
         });
     });
     //main shifter class changes
     self.initialize = function() {
+        console.log("mainV init");
         if (self.place() == "" && localStorage && localStorage.getItem('place') /*&& false*/ ) {
             self.startLocalSearch();
         } else {
@@ -115,14 +118,18 @@ function MainVM() {
     self.gotoList = function(markerNumber) {
         self.viewWindow(3);
         document.getElementById("business" + markerNumber).scrollIntoView();
-
     };
 
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
-document.addEventListener("load", MYAPP.mainView.initialize());
+//document.addEventListener("load", MYAPP.mainView.initialize());
+function googleSuccess(){
+    console.log("call back");
+    MYAPP.mapVModel.init();
+    MYAPP.mainView.initialize();
+}
 
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0

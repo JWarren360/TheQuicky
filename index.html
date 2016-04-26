@@ -1,76 +1,84 @@
 <!doctype html>
 <html lang="en" data-framework="KnockoutJS">
-	<head>
-		<meta charset="utf-8">
-		<title>KnockoutJS • TheQuicky</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<!--Google icons link-->
-		<link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link async href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-		<link async href="css/style.css" rel="stylesheet">
-		<!--icon from iconfinder.com-->
-		<link async rel="icon" type="image/png" href="./images/Beer.png">
-	</head>
-	<body>
-		<header>	
-			<i class="material-icons" data-bind="click: viewWindow.bind($data, 2)">home</i>
-			<i class="material-icons" data-bind="click: viewWindow.bind($data, 1)">search</i>
-			<h1 data-bind="click: viewWindow.bind($data, 2)">TheQuicky</h1>
-			<i class="material-icons" data-bind="click: viewWindow.bind($data, 2), mapReset">place</i>
-			<i class="material-icons" data-bind="click: viewWindow.bind($data, 3)">list</i>
-		</header>
-		<!--Three main views-->
-		<div class="main" data-bind='css: mainClassN()'>
-			<div class="searchView" data-bind='css: sClassN()'>
-				<div class="searchBar" data-bind='css: sbClassN()'>
-					<div class="searchBarText">
-						<h2>Welcome to <span>TheQuicky!</span></h2>
-						<form data-bind="submit: startSearch">
-						 	<label>City,State or Zipcode</label>
-						 	<input data-bind="value: place">
-						 	<button type="submit">Submit</button>
-						 </form>
-						<p>Looking to get a drink but dont want to fight the crowd?<br>
-						 Enter your zip to find a highly rated, uncrowded bar near you.<br>
-						 Cheers!</p>
-					</div>
-				</div>
-			</div>
-			<div class="map" data-bind='css: mClassN()'><div id="googleMap" ></div></div>
-			<div class="list" data-bind='css: lClassN()'>
-					<div class="listBar head" data-bind='css: sbClassN()'>
-						<div class="listBarInfo listHeader">
-							<h3>Listed From Least Busy to Most Busy</h3>
-						</div>
-					</div>
-					<div class="listBar filterHead" data-bind='css: sbClassN()'>
-						<div class="listBarInfo filter">
-							<form>
-                                <label>Filter:</label>
-                                <input data-bind="textInput: filter">
-                            </form>
-						</div>
-					</div>
-				<div data-bind="foreach: list">
-					<div data-bind="if: name.toLowerCase().search($parent.filter().toLowerCase()) != -1">
-						<div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
-							<div class="listBarInfo">
-								<img data-bind="attr:{src: large_image}">
-								<div class="listInfoText">
-									<h3 data-bind="text: $index"></h3><h3 data-bind="text: name"></h3>
-									<p data-bind="text: snippet"></p>
-								<div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
-        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
-		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
-		<script src="./js/main.min.js"></script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>KnockoutJS • TheQuicky</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!--Google icons link-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script">
+    <link rel="stylesheet" href="css/style.css">
+    <!--icon from iconfinder.com-->
+    <link rel="icon" type="image/png" href="./images/Beer.png">
+</head>
+
+<body>
+    <header>
+        <i class="material-icons" data-bind="click: viewWindow.bind($data, 2)">home</i>
+        <i class="material-icons" data-bind="click: viewWindow.bind($data, 1)">search</i>
+        <h1 data-bind="click: viewWindow.bind($data, 2)">TheQuicky</h1>
+        <i class="material-icons" data-bind="click: viewWindow.bind($data, 2), mapReset">place</i>
+        <i class="material-icons" data-bind="click: viewWindow.bind($data, 3)">list</i>
+    </header>
+    <!--Three main views-->
+    <div class="main" data-bind='css: mainClassN()'>
+        <div class="searchView" data-bind='css: sClassN()'>
+            <div class="searchBar" data-bind='css: sbClassN()'>
+                <div class="searchBarText">
+                    <h2>Welcome to <span>TheQuicky!</span></h2>
+                    <form data-bind="submit: startSearch">
+                        <label>City,State or Zipcode</label>
+                        <input data-bind="value: place">
+                        <button type="submit">Submit</button>
+                    </form>
+                    <p>Looking to get a drink but dont want to fight the crowd?
+                        <br> Enter your zip to find a highly rated, uncrowded bar near you.
+                        <br> Cheers!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="map" data-bind='css: mClassN()'>
+            <div id="googleMap"></div>
+        </div>
+        <div class="list" data-bind='css: lClassN()'>
+            <div class="listBar head" data-bind='css: sbClassN()'>
+                <div class="listBarInfo listHeader">
+                    <h3>Listed From Least Busy to Most Busy</h3>
+                </div>
+            </div>
+            <div class="listBar filterHead" data-bind='css: sbClassN()'>
+                <div class="listBarInfo filter">
+                    <form>
+                        <label>Filter:</label>
+                        <input data-bind="textInput: filter">
+                    </form>
+                </div>
+            </div>
+            <div data-bind="foreach: list">
+                <div data-bind="if: name.toLowerCase().search($parent.filter().toLowerCase()) != -1">
+                    <div class="listBar" data-bind='css: $parent.sbClassN(), attr:{id: id}'>
+                        <div class="listBarInfo">
+                            <img alt="Yelp public bar picture" src="./" data-bind="attr:{src: large_image}">
+                            <div class="listInfoText">
+                                <h3 data-bind="text: $index">Yelp did not load</h3>
+                                <h3 data-bind="text: name">Yelp did not load</h3>
+                                <p data-bind="text: snippet">Yelp did not load</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+    <script src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    <script src="./js/main.min.js"></script>
+    <script async src="http://maps.googleapis.com/maps/api/js?callback=googleSuccess&key=AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o"></script>
+    
+</body>
+
 </html>
