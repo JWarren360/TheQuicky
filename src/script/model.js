@@ -3,6 +3,8 @@
  function Model() {
      var self = this;
      self.marker = []; //Array of map markers
+     self.markerContentString = [];//Array of infowindow marker content
+     self.markerClickNumber = 0; //marker index of clicked marker
      self.map = ""; //The map object
      self.geocoder = ""; //The geocoder object
      //Defualt LatLng for centering map
@@ -157,7 +159,7 @@
          function startSort() {
              var flag = false;
              var container = {};
-             var length = self.barList.length - 1;
+             var length = self.yelpData.businesses.length;
              for (var i = 0; i < length; i++) {
                  if (self.barList[i].hereNow > self.barList[i + 1].hereNow) {
                      container = self.barList[i + 1];
@@ -171,7 +173,7 @@
              }
          }
          MYAPP.mainView.list.removeAll();
-         var length = self.barList.length;
+         var length = self.yelpData.businesses.length;
          for (var i = 0; i < length; i++) {
              MYAPP.mainView.list.push(self.barList[i]);
          }

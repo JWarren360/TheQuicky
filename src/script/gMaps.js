@@ -4,7 +4,6 @@ function GMaps() {
     var self = this;
     //Initialize Map
     function initialize() {
-        console.log("gmap init");
         map = new google.maps.Map(document.getElementById("googleMap"), MYAPP.appModel.mapOptions);
         geocoder = new google.maps.Geocoder();
         infowindow = new google.maps.InfoWindow();
@@ -57,34 +56,28 @@ function GMaps() {
                     '<h1>' + obj.name + '</h1>' +
                     '<a href="' + obj.url + '"><img src="' + obj.star + '"></a>' +
                     '</div></div>';
-                //var infowindow = new google.maps.InfoWindow({
-                //    content: contentString
-                //});
-                var isWindowClosed = true;
+                var appM = MYAPP.appModel;
+                appM.markerContentString[count] = contentString;
                 //Add hover event listeners to markers
-                var mq = window.matchMedia('all and (max-width: 700px)');
-                if (mq.matches) {
-                    mark.addListener('click', function(event) {
-                        infowindow.close();
-                        infowindow.setContent(contentString);
-                        infowindow.open(map, mark);
-                    });
-                } else {
-                    mark.addListener('mouseover', function(event) {
+                 mark.addListener('click', function(event) {
+                    if(appM.markerClickNumber !== number){
+                        if(appM.markerClickNumber !== undefined){
+                            appM.marker[appM.markerClickNumber].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                            infowindow.close(map, appM.marker[appM.markerClickNumber]);
+                        }
+                        appM.markerClickNumber = number;
                         infowindow.open(map, mark);
                         infowindow.setContent(contentString);
                         mark.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-                    });
-                    mark.addListener('mouseout', function(event) {
-                        infowindow.close(map, mark);
-                        infowindow.setContent(contentString);
-                        mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-                    });
-                    mark.addListener('click', function(event) {
-                        MYAPP.mainView.gotoList(number);
-                    });
-                }
-
+                    }else{
+                        MYAPP.appModel.markerClickNumber = number;
+                        mark.setAnimation(google.maps.Animation.BOUNCE);
+                        setTimeout(function(){
+                            mark.setAnimation(null);
+                            MYAPP.mainView.gotoList(number);
+                        }, 1000);
+                    }
+                });
             }(MYAPP.appModel.marker[count], object, count));
         }, timeout);
 

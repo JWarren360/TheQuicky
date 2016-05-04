@@ -43,36 +43,21 @@ function Yelp() {
         };
         OAuth.setTimestampAndNonce(message);
         OAuth.SignatureMethod.sign(message, accessor);
-        var parameterMap = OAuth.getParameterMap(message.parameters);
+        var parameterMap = OAuth.getParameterMap(message.parameters);        
         //ajax request to yelp
-        //TODO: Add error-handling
+        var apiTimeout = setTimeout(function() {
+              alert('ERROR: Failed to load data'); 
+         }, 5000);
+        //apiTimeout();
         $.ajax({
             'url': message.action,
             'data': parameterMap,
             'dataType': 'jsonp',
             'jsonpCallback': 'cb',
             'success': function(data, textStats, XMLHttpRequest) {
+                clearTimeout(apiTimeout);
                 MYAPP.appModel.success = true;
                 MYAPP.appModel.yelpData = data;
-            },
-            'error': function(jqXHR, exception) {
-                var msg = '';
-                if (jqXHR.status === 0) {
-                    msg = 'Not connect.\n Verify Network.';
-                } else if (jqXHR.status == 404) {
-                    msg = 'Requested page not found. [404]';
-                } else if (jqXHR.status == 500) {
-                    msg = 'Internal Server Error [500].';
-                } else if (exception === 'parsererror') {
-                    msg = 'Requested JSON parse failed.';
-                } else if (exception === 'timeout') {
-                    msg = 'Time out error.';
-                } else if (exception === 'abort') {
-                    msg = 'Ajax request aborted.';
-                } else {
-                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                }
-                alert(msg);
             }
         });
     }

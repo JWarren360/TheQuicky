@@ -18,13 +18,6 @@ function MainVM() {
     self.list = ko.observableArray();
     self.filter = ko.observable("");
     this.filter.subscribe(function () {
-        /*if: name.toLowerCase().search($parent.filter().toLowerCase()) != -1*/
-        /*if(self.list()[0].name.toLowerCase().search(self.filter().toLowerCase()) != -1){
-            console.log("true");
-            MYAPP.appModel.marker[2].setVisible(true);
-        }else{
-            console.log("false");
-        }*/
         self.list().forEach(function(element, index, array){
             MYAPP.appModel.marker[index].setVisible(
                 self.list()[index].name.toLowerCase().search(self.filter().toLowerCase()) != -1);
@@ -32,7 +25,6 @@ function MainVM() {
     });
     //main shifter class changes
     self.initialize = function() {
-        console.log("mainV init");
         if (self.place() == "" && localStorage && localStorage.getItem('place') /*&& false*/ ) {
             self.startLocalSearch();
         } else {
@@ -76,7 +68,7 @@ function MainVM() {
             MYAPP.mapVModel.geocodeAddress(localStorage.getItem('place'));
             MYAPP.mapVModel.markerSet(localList);
             self.list.removeAll();
-            var length = localList.length - 1;
+            var length = localList.length /*- 1*/;
             for (var i = 0; i < length; i++) {
                 self.list.push(localList[i]);
             }
@@ -117,20 +109,44 @@ function MainVM() {
     };
     self.gotoList = function(markerNumber) {
         self.viewWindow(3);
-        document.getElementById("business" + markerNumber).scrollIntoView();
+        var id = $("#business" + markerNumber);
+        setTimeout(function(){
+            var dest = 0;
+            dest = id.offset().top - $('#listViews').offset().top - id.scrollTop() + 200;
+            //go to destination
+            $('.list').animate({
+                scrollTop: dest
+            }, 2000, 'swing');
+        },1000);
     };
-
+    self.barClick = function(count){
+        var model = MYAPP.appModel;
+        var mark = model.marker[model.markerClickNumber];
+        mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        infowindow.close(map, mark);
+        model.markerClickNumber = count;
+        mark = model.marker[model.markerClickNumber];
+        mark.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+        infowindow.open(map, mark);
+        infowindow.setContent(MYAPP.appModel.markerContentString[count]);
+        mark.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function(){
+            mark.setAnimation(null);
+        }, 2000);
+        self.viewWindow(2);
+    }
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
-//document.addEventListener("load", MYAPP.mainView.initialize());
 function googleSuccess(){
-    console.log("call back");
     MYAPP.mapVModel.init();
     MYAPP.mainView.initialize();
 }
 
+function googleError(){
+    alert("Google maps failed to load. Please try and refresh screen.");
+}
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
 //Consumer Key	zhBg4yvDD4ywJ0vUrs0njg
