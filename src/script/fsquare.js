@@ -10,12 +10,12 @@ var MYAPP = MYAPP || {};
 function FSquare() {
     var self = this;
     self.search = function(lat, lng, name, i) {
-        var searchURL = "https://api.foursquare.com/v2/venues/search?ll=" + lat + "," + lng + "&query=" + name + "&radius=1000&intent=browse&client_id=RORNPTKCPZDXKGS42144L213YIFL442BPTMN4QVORMQ4J4GJ&client_secret=0WEBW0LJYAZ4AJOAKBAKXNAIQPIGVUDYTKL2OEPBBT0THX4K&v=20160315"
+        var searchURL = "https://api.foursquare.com/v2/venues/search?ll=" + lat + "," + lng + "&query=" + name + "&radius=1000&intent=browse&client_id=RORNPTKCPZDXKGS42144L213YIFL442BPTMN4QVORMQ4J4GJ&client_secret=0WEBW0LJYAZ4AJOAKBAKXNAIQPIGVUDYTKL2OEPBBT0THX4K&v=20160315";
 
         $.ajax({
             'url': searchURL,
             'success': function(data, textStats, XMLHttpRequest) {
-                if (data.response.venues.length != 0) {
+                if (data.response.venues.length !== 0) {
                     MYAPP.appModel.barList[i].hereNow = data.response.venues[0].hereNow.count;
                 } else {
                     MYAPP.appModel.barList[i].hereNow = 10000;

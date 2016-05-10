@@ -3,7 +3,7 @@
  function Model() {
      var self = this;
      self.marker = []; //Array of map markers
-     self.markerContentString = [];//Array of infowindow marker content
+     self.markerContentString = []; //Array of infowindow marker content
      self.markerClickNumber = 0; //marker index of clicked marker
      self.map = ""; //The map object
      self.geocoder = ""; //The geocoder object
@@ -133,16 +133,16 @@
                  snippet: self.yelpData.businesses[i].snippet_text,
                  id: 'business' + i
 
-             })
+             });
              MYAPP.fSquare.search(self.yelpData.businesses[i].location.coordinate.latitude, self.yelpData.businesses[i].location.coordinate.longitude, self.yelpData.businesses[i].name, i);
          }
          self.sort();
          self.localStore();
-     }
+     };
      self.sort = function() {
 
          var timer = setInterval(function() {
-             myTimer()
+             myTimer();
          }, 300);
 
          function myTimer() {
@@ -160,7 +160,7 @@
              var flag = false;
              var container = {};
              var length = self.yelpData.businesses.length;
-             for (var i = 0; i < length; i++) {
+             for (var i = 0; i < length - 1; i++) {
                  if (self.barList[i].hereNow > self.barList[i + 1].hereNow) {
                      container = self.barList[i + 1];
                      self.barList[i + 1] = self.barList[i];
@@ -178,12 +178,12 @@
              MYAPP.mainView.list.push(self.barList[i]);
          }
 
-     }
+     };
      self.localStore = function() {
          if (localStorage) {
              localStorage.setItem('listResults', JSON.stringify(self.barList));
          }
-     }
+     };
 
  }
 

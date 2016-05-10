@@ -17,8 +17,8 @@ function MainVM() {
     self.sbClassN = ko.observable(""); //default
     self.list = ko.observableArray();
     self.filter = ko.observable("");
-    this.filter.subscribe(function () {
-        self.list().forEach(function(element, index, array){
+    this.filter.subscribe(function() {
+        self.list().forEach(function(element, index, array) {
             MYAPP.appModel.marker[index].setVisible(
                 self.list()[index].name.toLowerCase().search(self.filter().toLowerCase()) != -1);
         });
@@ -68,7 +68,7 @@ function MainVM() {
             MYAPP.mapVModel.geocodeAddress(localStorage.getItem('place'));
             MYAPP.mapVModel.markerSet(localList);
             self.list.removeAll();
-            var length = localList.length /*- 1*/;
+            var length = localList.length /*- 1*/ ;
             for (var i = 0; i < length; i++) {
                 self.list.push(localList[i]);
             }
@@ -84,7 +84,7 @@ function MainVM() {
         MYAPP.yelp.search(self.place());
         //Wait for Yelp Response
         var timer = setInterval(function() {
-            myTimer()
+            myTimer();
         }, 300);
 
         function myTimer() {
@@ -110,16 +110,16 @@ function MainVM() {
     self.gotoList = function(markerNumber) {
         self.viewWindow(3);
         var id = $("#business" + markerNumber);
-        setTimeout(function(){
+        setTimeout(function() {
             var dest = 0;
             dest = id.offset().top - $('#listViews').offset().top - id.scrollTop() + 200;
             //go to destination
             $('.list').animate({
                 scrollTop: dest
             }, 2000, 'swing');
-        },1000);
+        }, 1000);
     };
-    self.barClick = function(count){
+    self.barClick = function(count) {
         var model = MYAPP.appModel;
         var mark = model.marker[model.markerClickNumber];
         mark.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
@@ -130,26 +130,27 @@ function MainVM() {
         infowindow.open(map, mark);
         infowindow.setContent(MYAPP.appModel.markerContentString[count]);
         mark.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){
+        setTimeout(function() {
             mark.setAnimation(null);
         }, 2000);
         self.viewWindow(2);
-    }
+    };
 
 }
 MYAPP.mainView = new MainVM();
 ko.applyBindings(MYAPP.mainView);
-function googleSuccess(){
+
+function googleSuccess() {
     MYAPP.mapVModel.init();
     MYAPP.mainView.initialize();
 }
 
-function googleError(){
-    alert("Google maps failed to load. Please try and refresh screen.");
+function googleError() {
+    alerts("Google maps failed to load. Please try and refresh screen.");
 }
 //var googleAPI = "AIzaSyDzfmK6u3rSnQ5mvqqeyJqWUepNnJWqa1o";
 //var yelpAPI = "API v2.0
-//Consumer Key	zhBg4yvDD4ywJ0vUrs0njg
-//Consumer Secret	s4lThWgYqnYdxNOAQ4AOkMMZtWs
-//Token	oeyauR_dukH2v7ZSf5R8EZ33W6oPcEB4
-//Token Secret	NjigkVXkpsOt-p4x0_Pdzqlydr0";
+//Consumer Key  zhBg4yvDD4ywJ0vUrs0njg
+//Consumer Secret   s4lThWgYqnYdxNOAQ4AOkMMZtWs
+//Token oeyauR_dukH2v7ZSf5R8EZ33W6oPcEB4
+//Token Secret  NjigkVXkpsOt-p4x0_Pdzqlydr0";

@@ -43,11 +43,11 @@ function Yelp() {
         };
         OAuth.setTimestampAndNonce(message);
         OAuth.SignatureMethod.sign(message, accessor);
-        var parameterMap = OAuth.getParameterMap(message.parameters);        
+        var parameterMap = OAuth.getParameterMap(message.parameters);
         //ajax request to yelp
         var apiTimeout = setTimeout(function() {
-              alert('ERROR: Failed to load data'); 
-         }, 5000);
+            alert('ERROR: Failed to load data');
+        }, 5000);
         //apiTimeout();
         $.ajax({
             'url': message.action,
